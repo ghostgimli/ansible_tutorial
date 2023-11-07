@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+  tasks:
+ 
+  - name: update sys 
+    tags: update
+    package:
+      update_cache: yes
+    changed_when: false
+    environment:
+      http_proxy: http://proxy.infosec.ru:8080
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8"
+
+  - name: create user bob
+    tags: bob,users,new
+    user:
+      name: bob
+      groups: root
+
+  - name: add ssh key for bob
+    tags: bob,ssh-key
+    authorized_key:
+      user: bob
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICNVsQ2IlUU/bwBqmOW/PA2iQJwQmJykUtlZQ5ZGuXWN ansible master"
+
+  - name: add sudoers file for bob
+    tags: bob,sudoers
+    copy:
+      src: sudo_bob
+      dest: /etc/sudoers.d/bob
+      owner: root
+      group: root
+      mode: 0440
+
+

@@ -1,3 +1,6 @@
-cas1
-cas2
-urp-web-frolov
+[jinn_hosts]
+cas1 vim_package=vim wget_package=wget
+cas2 vim_package=vim wget_package=wget
+
+[urp_hosts]
+urp-web-frolov vim_package=vim wget_package=wget

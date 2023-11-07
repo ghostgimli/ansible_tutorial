@@ -1,0 +1,33 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install vim
+    tags: vim
+    package:
+      name:
+        - "{{ vim_package }}"
+        - "{{ wget_package }}"
+      state: latest
+      update_cache: yes
+    environment:
+      http_proxy: http://proxy.infosec.ru:8080
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8"
+
+- hosts: all
+  roles:
+    - base
+
+- hosts: jinn_hosts
+  become: true
+  roles:
+    - jinn_servers
+
+- hosts: urp_hosts
+  become: true
+  roles:
+    - urp_servers
+
+

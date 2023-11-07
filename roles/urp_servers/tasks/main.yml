@@ -1,0 +1,22 @@
+- name: copy things
+  tags: cp
+  copy:
+    src: test.txt
+    dest: /root/test.txt
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: install unzip
+  package:
+    name: unzip
+  environment:
+    http_proxy: http://proxy.infosec.ru:8080 
+
+- name: start signing-test
+  tags: signing-test,services
+  service:
+    name: signing-test
+    state: started
+    enabled: yes
+

@@ -1,0 +1,5 @@
+- name: add ssh key for bob
+  authorized_key:
+    user: bob
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICNVsQ2IlUU/bwBqmOW/PA2iQJwQmJykUtlZQ5ZGuXWN ansible master"
+

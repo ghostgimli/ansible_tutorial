@@ -1,0 +1,29 @@
+- name: copy file 
+  copy:
+   src: answer.txt
+   dest: /root/answer.txt
+   group: root
+   owner: root
+   mode: 0555
+ 
+
+- name: add line to file
+  tags: jinn,sometext
+  lineinfile:
+    path: /root/answer.txt
+    regexp: '^АРЯЯЯЯЯЯЯ на абордаж сухопутные крысы'
+    line: KEFTEME
+  when: ansible_distribution == "CentOS"
+  register: answer
+
+- name: make ACK
+  tags: jinn,sometext
+  copy:
+    content: ""
+    dest: /root/ACK-file
+    force: false
+    group: sys
+    owner: root
+    mode: 0555
+  when: answer.changed
+
