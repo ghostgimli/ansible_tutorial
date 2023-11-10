@@ -32,7 +32,7 @@
       regexp: '^АРЯЯЯЯЯЯЯ на абордаж сухопутные крысы'
       line: KEFTEME
     when: ansible_distribution == "CentOS"
-    register: answer
+    notify: make_ACK
   
   - name: make ACK
     tags: jinn,sometext

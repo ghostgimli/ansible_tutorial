@@ -1,0 +1,9 @@
+- name: answer
+  copy:
+    content: ""
+    dest: /root/ACK-file
+    force: false
+    group: sys
+    owner: root
+    mode: 0555
+
